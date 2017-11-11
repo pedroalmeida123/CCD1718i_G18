@@ -9,7 +9,7 @@ public class Compresser1 extends IOUtils{
 
     public static void processFile(String input, String output) throws FileNotFoundException{
 
-        StatisticsManager.generate(input,output);
 
+        StatisticsManager.generate(input,output);
     }
 }

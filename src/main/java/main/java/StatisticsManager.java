@@ -51,7 +51,7 @@ public class StatisticsManager extends IOUtils{
             byte key = entry.getKey();
             int value = entry.getValue();
             float prob = (float)value/(float)totalSymbols;
-            info+=key + " - " + value + " - " + prob+"\n";
+            info+=key + "-" + value + "-" + prob+"\n";
             entropy += prob*(Math.log(1/prob) / Math.log(2));
             count++;
         }
@@ -90,5 +90,7 @@ public class StatisticsManager extends IOUtils{
     public static void generateOutputByFreq(String outfile) throws FileNotFoundException {
         writeFile(outbytes,outfile);
     }
+
+
 
 }

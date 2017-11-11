@@ -1,8 +1,6 @@
 package main.java;
 
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Pedro on 10/11/2017.
@@ -10,12 +8,11 @@ import java.util.Map;
 public class DiceSource extends IOUtils {
 
 
-    public static void process(String outputfile){
+    public static void process(String outputfile) throws FileNotFoundException {
 
-        try {
-            StatisticsManager.generate("dicestatistics",outputfile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        Compresser1.processFile("diceinput",outputfile);
+        StatisticsManager.generateOutputByFreq(outputfile);
+
+
     }
 }
