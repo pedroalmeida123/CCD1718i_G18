@@ -13,6 +13,8 @@ import java.util.stream.Stream;
  */
 public class IOUtils {
 
+    /*method to read from input file the string it contains*/
+
     public static String readLineByLineJava8(String filePath) {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8))
@@ -26,8 +28,10 @@ public class IOUtils {
         return contentBuilder.toString();
     }
 
+    /*method to write in an output file the byte passed as parameter*/
+
     public static void writeFile(byte[] outbytes, String outfile) throws FileNotFoundException {
-        FileOutputStream out = new FileOutputStream("C:\\Isell\\CCD\\CCDProjecto1\\src\\main\\resources\\"+ outfile);
+        FileOutputStream out = new FileOutputStream("C:\\Isell\\CCD\\CCD1718i_G18\\CCD1718_G18\\src\\main\\resources\\"+ outfile);
         try {
             out.write(outbytes);
             out.close();

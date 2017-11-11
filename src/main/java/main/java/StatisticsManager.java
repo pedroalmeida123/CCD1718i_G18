@@ -16,7 +16,7 @@ public class StatisticsManager extends IOUtils{
     static byte[] outbytes;
     public static void generate(String inputfile, String outputfile) throws FileNotFoundException {
 
-        String textfile = readLineByLineJava8("C:\\Isell\\CCD\\CCDProjecto1\\src\\main\\resources\\"+inputfile);
+        String textfile = readLineByLineJava8("C:\\Isell\\CCD\\CCD1718i_G18\\CCD1718_G18\\src\\main\\resources\\"+inputfile);
         byte[] bytes = textfile.getBytes();
         int size = bytes.length;
 
