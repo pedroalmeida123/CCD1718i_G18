@@ -1,6 +1,8 @@
 package Exercicios.Ex1;
 
 
+import Exercicios.Ex2.newFile;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -64,19 +66,17 @@ public class Exercicio1 {
 
 
 
-    /*public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         //exercicio 1
-        Map<Byte, Integer> mapInfo = readFile("textout.txt");
+        Map<Byte, Integer> mapInfo = readFile("book1.txt");
         Map<Byte, Double> mapFreq = calculateFreq(mapInfo);
         double entorp = calculateEntorp(mapFreq);
         System.out.print(entorp);
 
-        exercicio 2
-        FileOutputStream fOut = new FileOutputStream("textout.txt");
-        fOut.write(newFile.makeOut(626598,mapFreq));
-        fOut.close();
+        //exercicio 2
+        newFile.makeOut(626598,mapFreq);
 
-    }*/
+    }
 
 
 
