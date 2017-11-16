@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="CCD1718_G18_main" target="1.5" />
-      <module name="CCD1718_G18_test" target="1.5" />
+    <bytecodeTargetLevel target="1.9">
+      <module name="CCD1718_G18_main" target="1.8" />
+      <module name="CCD1718_G18_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
