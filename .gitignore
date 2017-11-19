@@ -1,46 +1,17 @@
-OS junk files
-[Tt]humbs.db
-*.DS_Store
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
 
-#Visual Studio files
-*.[Oo]bj
-*.user
-*.aps
-*.pch
-*.vspscc
-*.vssscc
-*_i.c
-*_p.c
-*.ncb
-*.suo
-*.tlb
-*.tlh
-*.bak
-*.[Cc]ache
-*.ilk
-*.log
-*.lib
-*.sbr
-*.sdf
-*.pyc
-*.xml
-ipch/
-obj/
-[Bb]in
-[Dd]ebug*/
-[Rr]elease*/
-Ankh.NoLoad
+# intellij
+.idea
+*.iml
+out/
 
-#Tooling
-_ReSharper*/
-*.resharper
-[Tt]est[Rr]esult*
+# dia
+*.dia~
 
-#Project files
-[Bb]uild/
+# gradle
+.gradle
+build
 
-#Subversion files
-.svn
-
-# Office Temp Files
-~$*
+# Ficheiro de tempo.
+systemtime.txt
