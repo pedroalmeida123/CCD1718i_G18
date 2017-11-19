@@ -13,5 +13,3 @@ out/
 .gradle
 build
 
-# Ficheiro de tempo.
-systemtime.txt
