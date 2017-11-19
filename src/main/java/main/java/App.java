@@ -1,7 +1,8 @@
 package main.java;
 
+import com.jcraft.jzlib.JZlib;
+
 import java.io.*;
-import java.util.HashMap;
 
 /**
  * Created by Pedro on 09/11/2017.
@@ -12,9 +13,11 @@ public class App {
     public static void main(String[] args) throws FileNotFoundException {
 
         //Compresser1.processFile("inputfile","symbolinfo");
-        //Emiter.process("output.txt");
+        //Emiter.process("output");
         //Markov1Order.process();
-        DiceSource.process("output.txt");
+        //DiceSource.process("symbolinfo", "output");
+        //DeflaterCompression.process("inputfile");
+        EmailCompression.process();
 
 
 

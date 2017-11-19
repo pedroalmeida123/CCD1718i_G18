@@ -17,7 +17,7 @@ public class IOUtils {
 
     public static String readLineByLineJava8(String filePath) {
         StringBuilder contentBuilder = new StringBuilder();
-        try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8))
+        try (Stream<String> stream = Files.lines( Paths.get("C:\\Isell\\CCD\\CCD1718i_G18\\CCD1718_G18\\src\\main\\resources\\"+filePath), StandardCharsets.UTF_8))
         {
             stream.forEach(s -> contentBuilder.append(s));
         }
