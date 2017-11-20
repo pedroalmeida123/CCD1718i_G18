@@ -12,23 +12,20 @@ public class StatisticsManager extends IOUtils{
     static HashMap<Byte,Integer> map = new HashMap<>();
     static String info = "";
     static byte[] outbytes;
-    public static void generate(String inputfile, String outputfile) throws FileNotFoundException {
+    public static void generate(String inputfile, String outputfile,String sourceDst) throws FileNotFoundException {
 
         String textfile = readLineByLineJava8(inputfile);
         byte[] bytes = textfile.getBytes();
         int size = bytes.length;
-
-        for (byte b : bytes)
-        {
-            byte key = b; // chave do mapa
+        for (byte b : bytes) {
             int inc;
-            if(map.containsKey(key)) {
-                inc = map.get(key);
-                map.put(key, ++inc);
+            if (map.containsKey(b)) {
+                inc = map.get(b);
+                map.put(b, ++inc);
+            } else {
+                map.put(b, 1);
             }
-            else {
-                map.put(key,1);
-            }
+
         }
 
         float entropy = 0;
@@ -81,12 +78,12 @@ public class StatisticsManager extends IOUtils{
             }
             outbytes[i] = bytes[counter];
         }
-
+        generateOutputByFreq(outbytes,sourceDst);
         writeFile(info.getBytes(),outputfile);
     }
 
-    public static void generateOutputByFreq(String outfile) throws FileNotFoundException {
-        writeFile(outbytes,outfile);
+    public static void generateOutputByFreq(byte[] result,String outfile) throws FileNotFoundException {
+        writeFile(result,outfile);
     }
 
 

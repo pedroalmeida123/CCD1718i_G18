@@ -16,11 +16,11 @@ public class App {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Compresser1.processFile("inputfile","symbolinfo");
-        Emiter.process("output");
+        //Compresser1.processFile("inputfile","symbolinfo");
+        //Emiter.process("output");
         DiceSource.process("symbolinfo", "output");
-        DeflaterCompression.process("inputfile");
-        EmailCompression.process();
+        //DeflaterCompression.process("inputfile");
+        //EmailCompression.process();
 
 
 

@@ -14,7 +14,6 @@ public class Emiter extends IOUtils {
     public static void process(String output) throws FileNotFoundException {
 
         Compresser1.processFile("inputfile","symbolinfo");
-        StatisticsManager.generateOutputByFreq(output);
 
     }
 }
