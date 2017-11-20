@@ -1,4 +1,4 @@
-package main.java;
+package Exercicios.Ex4;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,7 +23,7 @@ public class IOUtils {
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            System.out.println("problem reading file");
         }
         return contentBuilder.toString();
     }
@@ -36,7 +36,7 @@ public class IOUtils {
             out.write(outbytes);
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("problem writing to file");
         }
     }
 

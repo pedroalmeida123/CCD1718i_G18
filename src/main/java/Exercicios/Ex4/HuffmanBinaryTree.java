@@ -1,4 +1,4 @@
-package main.java;
+package Exercicios.Ex4;
 
 import java.util.ArrayList;
 import java.util.Arrays;

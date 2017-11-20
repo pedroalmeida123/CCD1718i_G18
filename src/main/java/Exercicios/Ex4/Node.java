@@ -1,4 +1,4 @@
-package main.java;
+package Exercicios.Ex4;
 
 /**
  * Created by Pedro on 18/11/2017.

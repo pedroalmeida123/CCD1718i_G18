@@ -1,5 +1,6 @@
-package main.java;
+package Exercicios.Ex7;
 
+import Exercicios.Ex4.IOUtils;
 import com.jcraft.jzlib.*;
 
 import java.io.FileNotFoundException;
@@ -11,6 +12,8 @@ import java.util.HashMap;
 public class DeflaterCompression extends IOUtils {
 
     static HashMap<Integer,String> map = new HashMap<>();
+    public static long initialBytes;
+    public static long endBytes;
     static{
         map.put(JZlib.Z_DEFAULT_COMPRESSION,"Default Compression");
         map.put(JZlib.Z_NO_COMPRESSION,"No Compression");
@@ -24,13 +27,13 @@ public class DeflaterCompression extends IOUtils {
     }
 
     public static void compressWithAllLevels(String text) {
-        compressByLevel(text,JZlib.Z_NO_COMPRESSION);
-        compressByLevel(text,JZlib.Z_DEFAULT_COMPRESSION);
-        compressByLevel(text,JZlib.Z_BEST_COMPRESSION);
-        compressByLevel(text,JZlib.Z_BEST_SPEED);
+        compressByLevel(text,JZlib.Z_NO_COMPRESSION,true);
+        compressByLevel(text,JZlib.Z_DEFAULT_COMPRESSION,true);
+        compressByLevel(text,JZlib.Z_BEST_COMPRESSION,true);
+        compressByLevel(text,JZlib.Z_BEST_SPEED,true);
     }
 
-    public static void compressByLevel(String text,int level) {
+    public static void compressByLevel(String text,int level,boolean toprint) {
         int err;
         byte[] bytes=text.getBytes();
 
@@ -57,12 +60,12 @@ public class DeflaterCompression extends IOUtils {
         }
 
         deflater.end();
-        long original = deflater.getTotalIn();
+        initialBytes = deflater.getTotalIn();
         while (!deflater.finished()){}
-        long result = deflater.getTotalOut();
+        endBytes = deflater.getTotalOut();
 
-        System.out.println("For compression level:" + map.get(level));
-        printStats(original,result);
+        if(toprint)System.out.println("For compression level:" + map.get(level));
+        if(toprint)printStats(initialBytes,endBytes);
 
 
         //decompress for test purpose
@@ -72,7 +75,7 @@ public class DeflaterCompression extends IOUtils {
         inflater.init();
         err = inflater.inflate(JZlib.Z_NO_FLUSH);
         inflater.end();
-        System.out.println("/***************************/");
+        if(toprint)System.out.println("/***************************/");
 
         try {
             writeFile(uncompresses, "output");

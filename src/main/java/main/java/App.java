@@ -1,6 +1,6 @@
 package main.java;
 
-import com.jcraft.jzlib.JZlib;
+import Exercicios.Ex8.EmailCompression;
 
 import java.io.*;
 
