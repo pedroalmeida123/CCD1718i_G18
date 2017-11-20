@@ -1,5 +1,9 @@
 package main.java;
 
+import Exercicios.Ex4.Compresser1;
+import Exercicios.Ex4.DiceSource;
+import Exercicios.Ex4.Emiter;
+import Exercicios.Ex7.DeflaterCompression;
 import Exercicios.Ex8.EmailCompression;
 
 import java.io.*;
@@ -12,11 +16,10 @@ public class App {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        //Compresser1.processFile("inputfile","symbolinfo");
-        //Emiter.process("output");
-        //Markov1Order.process();
-        //DiceSource.process("symbolinfo", "output");
-        //DeflaterCompression.process("inputfile");
+        Compresser1.processFile("inputfile","symbolinfo");
+        Emiter.process("output");
+        DiceSource.process("symbolinfo", "output");
+        DeflaterCompression.process("inputfile");
         EmailCompression.process();
 
 
