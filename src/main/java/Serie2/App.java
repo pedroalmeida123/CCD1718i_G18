@@ -16,9 +16,7 @@ public class App extends IOUtils{
 
         String[] files = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
         matrixCompression = new long[files.length][files.length];
-
         processDeflate(files);
-
 
     }
 
@@ -50,8 +48,7 @@ public class App extends IOUtils{
                     }
                     System.out.println("file" + i + " " + j);
                     double out = deflate.getTotalOut();
-                    matrixCompression[i][j] = (deflate.getTotalIn()-out);
-
+                    matrixCompression[i][j] = (long)((deflate.getTotalIn()-out)/100);
 
                 } catch (GZIPException e) {
                     e.printStackTrace();
@@ -61,9 +58,9 @@ public class App extends IOUtils{
         int val=0;
         int valprev=0;
         int dicID=0;
-        for(i=0;i<matrixCompression.length;i++){
-            for(f=0;f<matrixCompression.length;f++){
-                val+=matrixCompression[i][j];
+        for(int i=0;i<matrixCompression.length;i++){
+            for(int f=0;f<matrixCompression.length;f++){
+                val+=matrixCompression[i][f];
             }
             if(val>valprev){
                 dicID=i;
@@ -72,7 +69,7 @@ public class App extends IOUtils{
             System.out.println("ID->"+arrayoffiles[i]+" reduction->"+val);
         }
         System.out.println();
-        System.out.println("Best dictionary->"arrayoffiles[dicID]);
+        System.out.println("Best dictionary->"+arrayoffiles[dicID]);
     }
 
 }
