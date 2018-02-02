@@ -56,17 +56,19 @@ public class App extends IOUtils{
             }
         }
         int val=0;
-        int valprev=0;
+        int bestDic=0;
         int dicID=0;
         for(int i=0;i<matrixCompression.length;i++){
             for(int f=0;f<matrixCompression.length;f++){
-                val+=matrixCompression[i][f];
+                if(f!=i)
+                    val+=matrixCompression[i][f];
             }
-            if(val>valprev){
+            if(val>bestDic){
                 dicID=i;
-                valprev=val;
+                bestDic=val;
             }
             System.out.println("ID->"+arrayoffiles[i]+" reduction->"+val);
+            val = 0;
         }
         System.out.println();
         System.out.println("Best dictionary->"+arrayoffiles[dicID]);
