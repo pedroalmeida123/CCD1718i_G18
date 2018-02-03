@@ -5,10 +5,9 @@ import com.jcraft.jzlib.Deflater;
 import com.jcraft.jzlib.GZIPException;
 import com.jcraft.jzlib.JZlib;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Created by Pedro on 12/12/2017.
@@ -19,7 +18,8 @@ public class App extends IOUtils{
 
     public static void main(String[] args) throws IOException {
 
-        String[] files = {"1"};
+        String[] files = {"alice29.txt","arj241a.exe","asyoulik.txt","cp.htm","cp.html","fields.c","grammar.lsp","kennedy.xls",
+        "lcet10.txt","plrabn12.txt","ptt5","sum","xargs.1"};
         matrixCompression = new long[files.length][files.length];
         processDeflate(files);
 
@@ -30,45 +30,50 @@ public class App extends IOUtils{
         for (int i = 0; i < arrayoffiles.length; i++) {
             File file = new File("src\\main\\resources\\" + "_sent_mail\\" + arrayoffiles[i]);
             RandomAccessFile raf = new RandomAccessFile(file, "r");
-            int start = 0;
+            int start = 1;
             int thismany = (int) file.length();
 
             if (thismany > 32000) {
-                start = (int) file.length() - 32000;
+                start = thismany - 32000;
                 thismany = 32000;
             }
             byte[] dict = new byte[thismany];
 
             raf.seek(start);
-            raf.read(dict, start, thismany);
+            raf.read(dict,0, thismany);
 
 
             for (int j = 0; j < arrayoffiles.length; j++) {
-                byte[] compressed = new byte[40000];
-                String compr = new String(dict);
-                String line = "";
+                byte[] compressed;
                 Deflater deflate = null;
                 try {
                     deflate = new Deflater(JZlib.Z_BEST_COMPRESSION);
-                    line = readLineByLineJava8("_sent_mail\\" + arrayoffiles[j]);
-                    String val = compr.concat(line);
+                    deflate.setDictionary(dict,dict.length);
+                    InputStream inputStream = new FileInputStream("src\\main\\resources\\"+"_sent_mail\\" + arrayoffiles[j]);
+                    Scanner sc = new Scanner(inputStream, "UTF-8");
+                    while (sc.hasNextLine()) {
 
-                    byte[] buffer = val.getBytes();
-                    int err;
 
-                    deflate.setInput(buffer);
-                    deflate.setOutput(compressed);
+                        byte[] buffer;
+                        buffer = sc.nextLine().getBytes();
+                        compressed = new byte[buffer.length];
+                        int err;
 
-                    while (true) {
-                        err = deflate.deflate(JZlib.Z_FINISH);
-                        if (err == JZlib.Z_STREAM_END) break;
+                        deflate.setInput(buffer);
+                        deflate.setOutput(compressed);
+
+                        while (true) {
+                            err = deflate.deflate(JZlib.Z_FINISH);
+                            if (err == JZlib.Z_STREAM_END) break;
+                        }
+
+                        System.out.println("file" + i + " " + j);
+                        System.out.println(Arrays.toString(compressed));
+                        double out = deflate.getTotalOut() - dict.length;
+                        matrixCompression[i][j] = (long) (deflate.getTotalIn() - out) - thismany;
+                        // System.out.println(line);
                     }
-                    compr = "";
 
-                    System.out.println("file" + i + " " + j);
-                    System.out.println(Arrays.toString(compressed));
-                    double out = deflate.getTotalOut() - dict.length;
-                    matrixCompression[i][j] = (long) (deflate.getTotalIn() - out);
 
                 } catch (GZIPException e) {
                     e.printStackTrace();
@@ -83,7 +88,8 @@ public class App extends IOUtils{
         int i,f;
         for(i=0;i<matrixCompression.length;i++){
             for(f=0;f<matrixCompression.length;f++){
-                val+=matrixCompression[i][f];
+                if(f!=i)
+                    val+=matrixCompression[i][f];
             }
             if(val>bestDic){
                 dicID=i;
